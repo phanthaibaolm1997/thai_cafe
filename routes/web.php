@@ -14,5 +14,14 @@ use Illuminate\Support\Facades\Route;
 */
 
 Route::get('/', function () {
-    return view('welcome');
+    return view('admin');
+});
+
+Route::get('login','LoginController@getLogin')->name('login');
+Route::post('login','LoginController@Authentication')->name('authentication');
+
+Route::group(['prefix'=>'admin'],function(){
+    Route::group(['prefix'=>'nguoi-dung'],function(){
+        Route::get('/','UserController@getUser')->name('admin.nguoidung');
+    });
 });

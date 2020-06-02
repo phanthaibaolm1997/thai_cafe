@@ -40,11 +40,14 @@ return [
             'driver' => 'session',
             'provider' => 'users',
         ],
-
         'api' => [
             'driver' => 'token',
             'provider' => 'users',
             'hash' => false,
+        ],
+        'nguoi_dung' => [
+            'driver' => 'session',
+            'provider' => 'nguoi_dung',
         ],
     ],
 
@@ -71,10 +74,10 @@ return [
             'model' => App\User::class,
         ],
 
-        // 'users' => [
-        //     'driver' => 'database',
-        //     'table' => 'users',
-        // ],
+        'nguoi_dung' => [
+            'driver' => 'eloquent',
+            'model' => App\nguoi_dung::class,
+        ],
     ],
 
     /*
