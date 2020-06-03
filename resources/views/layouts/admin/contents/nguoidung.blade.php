@@ -4,14 +4,14 @@
     <h2>Quản lý nhân sự</h2>
     <div class="right-wrapper pull-right">
         <div class="box-btn-header">
-            <button class="btn btn-primary" data-toggle="modal" data-target="#addModal">
+            <button class="btn btn-primary"  onclick="openNav()">
                 <i class="fa fa-plus"></i> Thêm mới 
             </button>
         <div>
     </div>
 </header>
 <br/>
-<section class="panel">
+<section class="panel p-relative">
     <div class="panel-body">
         <table class="table">
             <thead>
@@ -42,6 +42,62 @@
             </tbody>
         </table>
     </div>
+    <div id="mySidenav" class="sidenav">
+	  <a href="javascript:void(0)" class="closebtn" onclick="closeNav()">&times;</a>
+	  <div class="container">
+	  	<div class="row">
+	  		<div class="col-md-12">
+	  			<h4>THÔNG TIN TÀI KHOẢN</h4>
+	  		</div>
+	  		<div class="col-md-6">
+	  			<label>Email</label>
+	  			<input type="text" name="email" class="form-control" required="true" placeholder="Nhập họ và tên....">
+	  		</div>
+	  		<div class="col-md-6">
+	  			<label>Mật khẩu</label>
+	  			<input type="password" name="password" class="form-control" required="true" placeholder="Nhập họ và tên....">
+	  		</div>
+
+	  		<div class="col-md-12">
+	  			<br/>
+	  			<h4>THÔNG TIN NGƯỜI DÙNG</h4>
+	  		</div>
+	  		<div class="col-md-6">
+	  			<label>Họ và tên</label>
+	  			<input type="text" name="name" class="form-control" required="true" placeholder="Nhập họ và tên....">
+	  		</div>
+	  		<div class="col-md-6">
+	  			<label>Ngày sinh</label>
+	  			<input type="text" name="name" class="form-control" required="true" placeholder="Nhập họ và tên....">
+	  		</div>
+	  		<div class="col-md-6">
+	  			<label>Số điện thoại</label>
+	  			<input type="text" name="name" class="form-control" required="true" placeholder="Nhập họ và tên....">
+	  		</div>
+	  		<div class="col-md-6">
+	  			<label>Loại</label>
+	  			<select class="form-control">
+	  				@foreach($userTypes as $type)
+	  				<option value="{{ $type->vt_id }}">{{ $type->vt_ten }}</option>
+	  				@endforeach
+	  			</select>
+	  		</div>
+	  		<div class="col-md-12">
+	  			<label>Địa chỉ</label>
+	  			<textarea class="form-control" rows="4"></textarea>
+	  		</div>
+	  		<div class="col-md-12 ">
+	  			<br/>
+	  			@csrf
+	  			<p class="text-right"><button class="btn btn-primary">Tạo mới</button></p>
+	  		</div>
+	  	</div>
+	  </div>
+	</div>
+
+
+	<div id="main">
+	</div>
 </section>
 @endsection
  <!-- Modal -->
@@ -64,3 +120,16 @@
         </div>
     </div>
  </div>
+<script type="text/javascript">
+
+function openNav() {
+  document.getElementById("mySidenav").style.width = "100%";
+  document.getElementById("mySidenav").style.height = "calc(100vh - 100px)";
+}
+
+function closeNav() {
+  document.getElementById("mySidenav").style.width = "0";
+  document.getElementById("mySidenav").style.height = "0";
+}
+
+</script>

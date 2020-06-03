@@ -15,4 +15,8 @@ class vai_tro extends Model
     public function luong(){
         return $this->belongsTo('App\luong', 'luong_id');
     }
+
+    public function getAllRole(){
+    	return vai_tro::all();
+    }
 }
