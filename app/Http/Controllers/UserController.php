@@ -16,5 +16,18 @@ class UserController extends Controller
         $data['userTypes'] = $type->getAllRole();
         return view('layouts.admin.contents.nguoidung',$data);
     }
+
+    public function addUser(Request $request){
+        $user = new nguoi_dung();
+        $email = $request->email;
+        $password = $request->password;
+        $name = $request->name;
+        $birthday = $request->birthday;
+        $phone = $request->phone;
+        $type = $request->type;
+        $address = $request->address;
+        $user->createUser($email,$password,$name,$birthday,$phone,$type,$address);
+        return back();
+    }
     
 }

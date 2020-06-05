@@ -23,5 +23,6 @@ Route::post('login','LoginController@Authentication')->name('authentication');
 Route::group(['prefix'=>'admin'],function(){
     Route::group(['prefix'=>'nguoi-dung'],function(){
         Route::get('/','UserController@getUser')->name('admin.nguoidung');
+        Route::post('/add','UserController@addUser')->name('admin.nguoidung.add');
     });
 });

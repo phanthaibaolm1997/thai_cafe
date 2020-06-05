@@ -45,6 +45,7 @@
     <div id="mySidenav" class="sidenav">
 	  <a href="javascript:void(0)" class="closebtn" onclick="closeNav()">&times;</a>
 	  <div class="container">
+        <form method="POST" action="{{ route('admin.nguoidung.add') }}">
 	  	<div class="row">
 	  		<div class="col-md-12">
 	  			<h4>THÔNG TIN TÀI KHOẢN</h4>
@@ -57,7 +58,6 @@
 	  			<label>Mật khẩu</label>
 	  			<input type="password" name="password" class="form-control" required="true" placeholder="Nhập họ và tên....">
 	  		</div>
-
 	  		<div class="col-md-12">
 	  			<br/>
 	  			<h4>THÔNG TIN NGƯỜI DÙNG</h4>
@@ -68,15 +68,15 @@
 	  		</div>
 	  		<div class="col-md-6">
 	  			<label>Ngày sinh</label>
-	  			<input type="text" name="name" class="form-control" required="true" placeholder="Nhập họ và tên....">
+	  			<input type="date" name="birthday" class="form-control" required="true" placeholder="Nhập họ và tên....">
 	  		</div>
 	  		<div class="col-md-6">
 	  			<label>Số điện thoại</label>
-	  			<input type="text" name="name" class="form-control" required="true" placeholder="Nhập họ và tên....">
+	  			<input type="text" name="phone" class="form-control" required="true" placeholder="Nhập họ và tên....">
 	  		</div>
 	  		<div class="col-md-6">
 	  			<label>Loại</label>
-	  			<select class="form-control">
+	  			<select class="form-control" name="type">
 	  				@foreach($userTypes as $type)
 	  				<option value="{{ $type->vt_id }}">{{ $type->vt_ten }}</option>
 	  				@endforeach
@@ -84,14 +84,15 @@
 	  		</div>
 	  		<div class="col-md-12">
 	  			<label>Địa chỉ</label>
-	  			<textarea class="form-control" rows="4"></textarea>
+	  			<textarea class="form-control" rows="4" name="address"></textarea>
 	  		</div>
 	  		<div class="col-md-12 ">
 	  			<br/>
 	  			@csrf
 	  			<p class="text-right"><button class="btn btn-primary">Tạo mới</button></p>
 	  		</div>
-	  	</div>
+          </div>
+        </form>
 	  </div>
 	</div>
 
@@ -100,36 +101,14 @@
 	</div>
 </section>
 @endsection
- <!-- Modal -->
- <div class="modal fade" id="addModal" tabindex="-1" role="dialog" aria-labelledby="addModalTitle" aria-hidden="true">
-    <div class="modal-dialog" role="document">
-        <div class="modal-content">
-            <div class="modal-header">
-            <h5 class="modal-title" id="addModalTitle">Thêm mới nhân sự</h5>
-            <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-                <span aria-hidden="true">&times;</span>
-            </button>
-            </div>
-            <div class="modal-body">
-            ...
-            </div>
-            <div class="modal-footer">
-            <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
-            <button type="button" class="btn btn-primary">Save changes</button>
-            </div>
-        </div>
-    </div>
- </div>
 <script type="text/javascript">
+    function openNav() {
+        document.getElementById("mySidenav").style.width = "100%";
+        document.getElementById("mySidenav").style.height = "calc(100vh - 100px)";
+    }
 
-function openNav() {
-  document.getElementById("mySidenav").style.width = "100%";
-  document.getElementById("mySidenav").style.height = "calc(100vh - 100px)";
-}
-
-function closeNav() {
-  document.getElementById("mySidenav").style.width = "0";
-  document.getElementById("mySidenav").style.height = "0";
-}
-
+    function closeNav() {
+        document.getElementById("mySidenav").style.width = "0";
+        document.getElementById("mySidenav").style.height = "0";
+    }
 </script>

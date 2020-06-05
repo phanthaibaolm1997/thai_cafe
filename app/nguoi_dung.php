@@ -29,4 +29,16 @@ class nguoi_dung extends Authenticatable
         return $data;
     }
 
+    public function createUser($email,$password,$name,$birthday,$phone,$type,$address){
+        $create = new nguoi_dung();
+        $create->email = $email;
+        $create->password = bcrypt($password);
+        $create->nd_ten = $name;
+        $create->nd_ngaysinh = $birthday;
+        $create->nd_sdt = $phone;
+        $create->nd_diachi = $address;
+        $create->vt_id = $type;
+        $create->save();
+    }
+
 }
