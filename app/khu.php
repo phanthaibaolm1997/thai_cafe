@@ -12,4 +12,8 @@ class khu extends Model
     public function ban(){
         return $this->hasMany('App\ban', 'khu_id');
     }
+
+    public function getAreas(){
+       return khu::with('ban')->get();
+    }
 }

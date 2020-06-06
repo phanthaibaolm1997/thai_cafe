@@ -25,4 +25,8 @@ Route::group(['prefix'=>'admin'],function(){
         Route::get('/','UserController@getUser')->name('admin.nguoidung');
         Route::post('/add','UserController@addUser')->name('admin.nguoidung.add');
     });
+    Route::group(['prefix'=>'khu-vuc'],function(){
+        Route::get('/','KhuVucController@getArea')->name('admin.area');
+        // Route::post('/add','KhuVucController@addUser')->name('admin.nguoidung.add');
+    });
 });
