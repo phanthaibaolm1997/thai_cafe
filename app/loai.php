@@ -13,4 +13,8 @@ class loai extends Model
         return $this->hasMany('App\mat_hang', 'loai_id');
     }
 
+    public function getAllLoai(){
+        return loai::all();
+    }
+
 }

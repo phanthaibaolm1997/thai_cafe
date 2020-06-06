@@ -12,4 +12,8 @@ class don_vi extends Model
     public function mat_hang(){
         return $this->hasMany('App\mat_hang', 'dv_id');
     }
+
+    public function getAllDonVi(){
+        return don_vi::all();
+    }
 }

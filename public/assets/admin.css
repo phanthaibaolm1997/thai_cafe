@@ -1,54 +1,118 @@
 /* The side navigation menu */
 .sidenav {
-  height: 100%; /* 100% Full-height */
-  width: 0; /* 0 width - change this with JavaScript */
-  position: absolute; /* Stay in place */
-  z-index: 1; /* Stay on top */
-  top: 0; /* Stay at the top */
-  left: 0;
-  background-color: #fff; /* Black*/
-  overflow-x: hidden; /* Disable horizontal scroll */
-  padding-top: 60px; /* Place content 60px from the top */
-  transition: 0.5s; /* 0.5 second transition effect to slide in the sidenav */
+    height: 100%; /* 100% Full-height */
+    width: 0; /* 0 width - change this with JavaScript */
+    position: absolute; /* Stay in place */
+    z-index: 1; /* Stay on top */
+    top: 0; /* Stay at the top */
+    left: 0;
+    background-color: #fff; /* Black*/
+    overflow-x: hidden; /* Disable horizontal scroll */
+    padding-top: 60px; /* Place content 60px from the top */
+    transition: 0.5s; /* 0.5 second transition effect to slide in the sidenav */
 }
 
 /* The navigation menu links */
 .sidenav a {
-  padding: 8px 8px 8px 32px;
-  text-decoration: none;
-  font-size: 25px;
-  color: #818181;
-  display: block;
-  transition: 0.3s;
+    padding: 8px 8px 8px 32px;
+    text-decoration: none;
+    font-size: 25px;
+    color: #818181;
+    display: block;
+    transition: 0.3s;
 }
 
 /* When you mouse over the navigation links, change their color */
 .sidenav a:hover {
-  color: #f1f1f1;
+    color: #f1f1f1;
 }
 
 /* Position and style the close button (top right corner) */
 .sidenav .closebtn {
-  position: absolute;
-  top: 0;
-  right: 25px;
-  font-size: 36px;
-  margin-left: 50px;
+    position: absolute;
+    top: 0;
+    right: 25px;
+    font-size: 36px;
+    margin-left: 50px;
 }
 
 /* Style page content - use this if you want to push the page content to the right when you open the side navigation */
 #main {
-  transition: margin-left .5s;
-  padding: 20px;
+    transition: margin-left 0.5s;
+    padding: 20px;
 }
 
 /* On smaller screens, where height is less than 450px, change the style of the sidenav (less padding and a smaller font size) */
 @media screen and (max-height: 450px) {
-  .sidenav {padding-top: 15px;}
-  .sidenav a {font-size: 18px;}
+    .sidenav {
+        padding-top: 15px;
+    }
+    .sidenav a {
+        font-size: 18px;
+    }
 }
-.area{
-  border: 2px solid #522b1c;
-  border-radius: 3px;
-  padding: 0px 5px;
+.area {
+    border: 1px solid #cacaca;
+    border-radius: 10px;
+    padding: 0px 5px;
+    margin-top: 30px;
+}
+.middlepar {
+    height: calc(100vh - 170px);
+    width: 100%;
+    position: relative;
+}
+.middlediv {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    width: 100%;
+}
+.table-borderless th {
+    border: unset !important;
+}
+.table-borderless td {
+    border: unset !important;
+}
+.flex-1 {
+    flex: 1;
+}
+.flexAuto {
+    flex-basis: auto;
+}
+.d-flex {
+    display: flex;
+    width: 100%;
+}
+.ml-4 {
+    margin-left: 40px;
+}
+.ban {
+    background-color: #0077b3;
+    border-radius: 4px;
+    margin-top: 20px;
+    color: #fff;
+}
+.head-ban {
+    color: #fff;
+    padding: 5px;
+    border-top: 1px solid #fff;
+}
+.mb-0 {
+    margin-bottom: 0px !important;
+}
+.gallery {
+    min-height: 400px;
+    background: #edebeb;
+    border-radius: 5px;
+    margin-top: 10px;
+}
+.gallery img {
+    width: 150px;
+    height: 150px;
+    object-fit: cover;
+    border-radius: 5px;
+    border: 2px solid #fff;
+    margin: 5px;
 }
