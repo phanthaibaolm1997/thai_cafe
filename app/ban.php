@@ -12,6 +12,9 @@ class ban extends Model
     public function khu(){
         return $this->belongsTo('App\khu', 'khu_id');
     }
+    public function order(){
+        return $this->hasMany('App\order', 'ban_id');
+    }
 
     public function createBan($id,$name){
         $create = new ban();

@@ -21,4 +21,8 @@ class hinh_anh extends Model
         return $create->ha_id;
     }
 
+    public function deleteHA($id){
+        hinh_anh::where('ha_id',$id)->delete();
+    }
+
 }

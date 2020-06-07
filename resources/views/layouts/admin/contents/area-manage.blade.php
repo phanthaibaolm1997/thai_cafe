@@ -64,11 +64,13 @@
                                         <p class="text-right mb-0">
                                             <button class="btn btn-default" data-toggle="modal"
                                                 data-target="#modalEdit{{$ban->ban_id}}"> <span class="text-primary"><i
-                                                        class="fa fa-edit" aria-hidden="true"></i></span></button>
+                                                        class="fa fa-edit" aria-hidden="true"></i></span>
+                                            </button>
                                             <button class="btn btn-default"
                                                 onclick="confirmDel(`{{ route('admin.manageArea.delete',$ban->ban_id) }}`)"><span
                                                     class="text-danger">
-                                                    <i class="fa  fa-trash-o" aria-hidden="true"></i></span></button>
+                                                    <i class="fa  fa-trash-o" aria-hidden="true"></i></span>
+                                            </button>
                                         </p>
                                     </div>
                                 </div>

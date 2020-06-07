@@ -12,5 +12,17 @@ class ngay extends Model
     public function chi_tiet_ca(){
         return $this->hasMany('App\chi_tiet_ca', 'ngay');
     }
+    public function createNgay($ngay){
+        $create = new ngay();
+        $create->ngay = $ngay;
+        $create->save();
+    }
+
+    public function checkOrCreate($ngay){
+        $data = ngay::where('ngay',$ngay)->first();
+        if ($data === null) {
+            $this->createNgay($ngay);
+        }
+    }
 
 }

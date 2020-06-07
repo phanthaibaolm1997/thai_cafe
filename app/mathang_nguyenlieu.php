@@ -22,4 +22,8 @@ class mathang_nguyenlieu extends Model
         $create->nl_id = $nl_id;
         $create->save();
     }
+
+    public function deleteMHNLByMH($mh_ma){
+        mathang_nguyenlieu::where('mh_ma',$mh_ma)->delete();
+    }
 }

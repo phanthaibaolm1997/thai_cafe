@@ -41,7 +41,21 @@ Route::group(['prefix'=>'admin'],function(){
         Route::get('/','MatHangController@getProd')->name('admin.prod');
         Route::get('/add','MatHangController@prodAddUI')->name('admin.prod.add-ui');
         Route::post('/add','MatHangController@prodAdd')->name('admin.prod.add');
-       
+        Route::get('/edit/{id}','MatHangController@prodEditUI')->name('admin.prod.edit-ui');
+        Route::post('/edit/{id}','MatHangController@prodEdit')->name('admin.prod.edit');
+        Route::get('/delete/{id}','MatHangController@delProd')->name('admin.prod.delete');
+    });
+    Route::group(['prefix'=>'hinh-anh'],function(){
+        Route::get('/mh/{id}','CustomController@deleteHAMH')->name('admin.hinhanhmathang.delete');
+    });
+    Route::group(['prefix'=>'phan-cong'],function(){
+        Route::get('/','PhanCongController@getCalendar')->name('admin.phancong');
+        Route::post('/add','PhanCongController@addPhanCong')->name('admin.phancong.add');
+        Route::post('/edit','PhanCongController@editPhanCong')->name('admin.phancong.edit');
+        Route::post('/delete','PhanCongController@deletePhanCong')->name('admin.phancong.delete');
+    });
+    Route::group(['prefix'=>'order'],function(){
+        Route::get('/','OrderController@getOrder')->name('admin.order');
     });
 
 });

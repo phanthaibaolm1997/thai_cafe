@@ -12,4 +12,8 @@ class ca extends Model
     public function chi_tiet_ca(){
         return $this->hasMany('App\chi_tiet_ca', 'ca_id');
     }
+
+    public function getAllCa(){
+        return ca::all();
+    }
 }

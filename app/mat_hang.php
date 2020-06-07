@@ -16,7 +16,8 @@ class mat_hang extends Model
         return $this->belongsTo('App\don_vi', 'dv_id');
     }
     public function chi_tiet_hinh_anh(){
-        return $this->hasMany('App\chi_tiet_hinh_anh', 'mh_ma');
+        return $this->hasMany('App\chi_tiet_hinh_anh', 'mh_ma')
+        ->with('hinh_anh');
     }
     public function mathang_nguyenlieu(){
         return $this->hasMany('App\mathang_nguyenlieu', 'mh_ma');
@@ -44,5 +45,30 @@ class mat_hang extends Model
         $create->save();
 
         return $create->mh_ma;
+    }
+
+    public function prodDetail($id){
+        $data = mat_hang::where('mh_ma',$id)
+        ->with('loai')
+        ->with('don_vi')
+        ->with('mathang_nguyenlieu')
+        ->with('chi_tiet_hinh_anh')
+        ->first();
+        return $data;
+    }
+
+    public function updateProd($id,$name,$mota,$giaban,$loai,$donvi){
+        mat_hang::where('mh_ma',$id)
+        ->update([
+            'mh_ten' => $name,
+            'mh_mota' => $mota,
+            'mh_gia' => $giaban,
+            'loai_id' => $loai,
+            'dv_id' => $donvi,
+        ]);
+    }
+
+    public function delProd($id){
+        mat_hang::where('mh_ma',$id)->delete();
     }
 }

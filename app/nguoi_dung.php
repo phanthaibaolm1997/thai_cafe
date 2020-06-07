@@ -22,6 +22,9 @@ class nguoi_dung extends Authenticatable
         return $this->belongsTo('App\vai_tro', 'vt_id');
     }
 
+    public function getAllNDOri(){
+        return nguoi_dung::with('vai_tro')->get();
+    }
 
     public function getAllND($pagi){
         $data = nguoi_dung::with('vai_tro')

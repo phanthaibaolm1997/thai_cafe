@@ -24,6 +24,7 @@
 	<link rel="stylesheet" href="{{ asset('/assets/admin.css') }}">
 	<script src="{{ ('/assets/vendor/modernizr/modernizr.js') }}"></script>
 	<link href="https://cdn.jsdelivr.net/npm/select2@4.1.0-beta.1/dist/css/select2.min.css" rel="stylesheet" />
+	<link href="//cdnjs.cloudflare.com/ajax/libs/fullcalendar/2.1.1/fullcalendar.min.css" rel="stylesheet" />
 
 </head>
 
@@ -75,12 +76,15 @@
 	<script src="{{ ('/assets/javascripts/theme.js') }}"></script>
 	<script src="{{ ('/assets/javascripts/theme.custom.js') }}"></script>
 	<script src="{{ ('/assets/javascripts/theme.init.js') }}"></script>
+	<script src="{{ ('/assets/javascripts/ui-elements/examples.lightbox.js') }}"></script>
+	<script src="{{ ('/assets/javascripts/ui-elements/examples.modals.js') }}"></script>
 	<script src="https://cdnjs.cloudflare.com/ajax/libs/bootbox.js/5.4.0/bootbox.min.js"></script>
-	<script src="{{ ('/assets/admin.js') }}"></script>
 	<script src="https://cdn.ckeditor.com/4.14.0/standard/ckeditor.js"></script>
-
-
-
+	<script src='http://fullcalendar.io/js/fullcalendar-2.1.1/lib/moment.min.js'></script>
+	<script src='http://fullcalendar.io/js/fullcalendar-2.1.1/lib/jquery.min.js'></script>
+	<script src="http://fullcalendar.io/js/fullcalendar-2.1.1/lib/jquery-ui.custom.min.js"></script>
+	<script src='http://fullcalendar.io/js/fullcalendar-2.1.1/fullcalendar.min.js'></script>
+	<script src="{{ ('/assets/admin.js') }}"></script>
 </body>
 
 </html>

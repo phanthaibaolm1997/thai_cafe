@@ -10,7 +10,8 @@ class khu extends Model
     protected $primaryKey = "khu_id";
 
     public function ban(){
-        return $this->hasMany('App\ban', 'khu_id');
+        return $this->hasMany('App\ban', 'khu_id')
+        ->with('order');
     }
 
     public function getAreas(){

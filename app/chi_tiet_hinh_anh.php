@@ -22,4 +22,8 @@ class chi_tiet_hinh_anh extends Model
         $create->mh_ma = $mh_ma;
         $create->save();
     }
+
+    public function deleteCTHA($id){
+        chi_tiet_hinh_anh::where('ha_id',$id)->delete();
+    }
 }
