@@ -212,10 +212,10 @@
     margin-bottom: 15px;
 }
 #order-list {
-    height: 500px;
+    height: calc(100vh - 286px);
     padding: 5px;
-    overflow-y: scroll;
     background-color: #eee;
+    border-radius: 5px;
 }
 #order-list img {
     width: 75px;
@@ -231,19 +231,31 @@
 .fakeOrder {
     position: relative;
     background: #fff;
-    padding: 4px;
-    margin-bottom: 3px;
+    padding: 5px;
+    margin-bottom: 5px;
     border-radius: 5px;
 }
 .killfakeOrder {
     position: absolute;
     top: 0;
     right: 0;
+    border: 1px solid #fff;
+    padding: 0px 5px;
 }
 .headingOrder {
     position: absolute;
     top: 0px;
     left: 50px;
+}
+.modalFull{
+    height: 100vh;
+}
+.img-100{
+    width: 100px;
+    height: 100px;
+    object-fit: cover;
+    border-radius: 5px;
+    border: 2px solid #fff;
 }
 /* calendar */
 

@@ -40,4 +40,16 @@ class ban extends Model
     public function deleteBan($id){
         ban::where('ban_id',$id)->delete();
     }
+
+    public function activeBan($id){
+        ban::where('ban_id',$id)->update([
+            'ban_tinhtrang'=> 1
+        ]);
+    }
+
+    public function deActiveBan($id){
+        ban::where('ban_id',$id)->update([
+            'ban_tinhtrang'=> 0
+        ]);
+    }
 }

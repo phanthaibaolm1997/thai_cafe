@@ -56,6 +56,7 @@ Route::group(['prefix'=>'admin'],function(){
     });
     Route::group(['prefix'=>'order'],function(){
         Route::get('/','OrderController@getOrder')->name('admin.order');
+        Route::post('/','OrderController@Order')->name('admin.order.datban');
     });
 
 });

@@ -28,12 +28,49 @@
                                     <h4 class="text-center"><i class="fa fa-coffee" aria-hidden="true"></i>
                                         {{$ban->ban_ten}}</h4>
                                     <p class="text-center">
-                                        <button class="btn btn-sm btn-primary">Order</button>
+                                        <button class="mb-xs btn-sm mt-xs mr-xs modal-sizes btn btn-default" href="#orderFull{{$ban->ban_id}}">Order</button>
                                         <button class="btn btn-sm btn-warning">Thanh toán</button>
                                     </p>
                                 </div>
                             </div>
                         </div>
+                        <div id="orderFull{{$ban->ban_id}}" class="modal-block modal-block-lg mfp-hide">
+                            <section class="panel">
+                                <div class="panel-body">
+                                    <div class="modal-wrapper">
+                                        <div class="modal-text">
+                                            <table class="table table-bordered">
+                                            @foreach ($ban->order[0]->detail_order as $do)
+                                                <tr>
+                                                    <td style="width: 100px">
+                                                        <img src='{{ asset($do->mat_hang->chi_tiet_hinh_anh[0]->hinh_anh->ha_url)}}' class="img-100"/>
+                                                    </td>
+                                                    <td>
+                                                        {{$do->mat_hang->mh_ten}}
+                                                    </td>
+                                                    <td>
+                                                        {{number_format($do->mat_hang->mh_gia)}} đ
+                                                    </td>
+                                                    <td>
+                                                        <button class='btn btn-danger'>X</button></div>
+                                                    </td>
+                                                </tr>
+                                            @endforeach
+                                        </table>
+                                        </div>
+                                    </div>
+                                </div>
+                                <footer class="panel-footer">
+                                    <div class="row">
+                                        <div class="col-md-12 text-right">
+                                            <button class="btn btn-primary modal-confirm">Confirm</button>
+                                            <button class="btn btn-default modal-dismiss">Cancel</button>
+                                        </div>
+                                    </div>
+                                </footer>
+                            </section>
+                        </div>
+
                         @else
                         <div class="ban-disactive">
                             <div class="row">
@@ -42,8 +79,9 @@
                                         {{$ban->ban_ten}}</h4>
                                     <p class="text-center">
                                         <button class="btn btn-sm btn-default"
-                                            onclick="openNav(`{{$ban->ban_id}}`,`{{$ban->ban_ten}}`)">Đặt
-                                            bàn</button>
+                                            onclick="openNav(`{{$ban->ban_id}}`,`{{$ban->ban_ten}}`)"> 
+                                            Đặt bàn 
+                                        </button>
                                     </p>
                                 </div>
                             </div>
@@ -57,9 +95,9 @@
         </div>
     </div>
     <div id="mySidenav" class="sidenav">
-
         <h3 class="headingOrder"></h3> <a href="javascript:void(0)" class="closebtn" onclick="closeNav()">&times;</a>
-        <form method="POST" action="">
+        <form method="POST" action="{{ route('admin.order.datban') }}">
+            @csrf
             <div class="container">
                 <input type="hidden" id="ban_id" name="ban" />
                 <div class="row">

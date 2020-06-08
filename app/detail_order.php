@@ -14,4 +14,12 @@ class detail_order extends Model
     public function mat_hang(){
         return $this->belongsTo('App\mat_hang', 'mh_ma');
     }
+
+    public function createDO($order_id, $mh_ma, $soluong){
+        $create = new detail_order();
+        $create->mh_ma = $mh_ma;
+        $create->order_id = $order_id;
+        $create->dorder_soluong = $soluong;
+        $create->save();
+    }
 }

@@ -10,12 +10,11 @@ class khu extends Model
     protected $primaryKey = "khu_id";
 
     public function ban(){
-        return $this->hasMany('App\ban', 'khu_id')
-        ->with('order');
+        return $this->hasMany('App\ban', 'khu_id');
     }
 
     public function getAreas(){
-       return khu::with('ban')->get();
+       return khu::with('ban.order.detail_order.mat_hang.chi_tiet_hinh_anh.hinh_anh')->get();
     }
 
     public function createArea($area){
