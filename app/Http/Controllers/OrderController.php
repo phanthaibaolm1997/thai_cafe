@@ -42,4 +42,24 @@ class OrderController extends Controller
         
         return redirect()->back()->with('success', "Thêm mới thành công!!");
     }
+
+    public function orderUpdateQuality(Request $request){
+        $do = new detail_order();
+
+        $soluong = $request->soluong;
+        $order_id = $request->order_id;
+        $mh_ma = $request->mh_ma;
+
+        $do->orderUpdateQuality($order_id,$mh_ma,$soluong);
+        // return redirect()->back()->with('success', "Update thành công!!");
+    }
+
+    public function orderdelMH(Request $request){
+        $do = new detail_order();
+
+        $order_id = $request->order_id;
+        $mh_ma = $request->mh_ma;
+
+        $do->orderdelMH($order_id,$mh_ma);
+    }
 }

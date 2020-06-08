@@ -22,4 +22,22 @@ class detail_order extends Model
         $create->dorder_soluong = $soluong;
         $create->save();
     }
+
+    public function orderUpdateQuality($order_id,$mh_ma,$soluong){
+        detail_order::where([
+            'order_id'=>$order_id,
+            'mh_ma'=>$mh_ma,
+            ])
+        ->update([
+            'dorder_soluong'=>$soluong,
+        ]);
+    }
+
+    public function orderdelMH($order_id,$mh_ma){
+        detail_order::where([
+            'order_id'=>$order_id,
+            'mh_ma'=>$mh_ma,
+            ])
+        ->delete();
+    }
 }

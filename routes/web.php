@@ -56,6 +56,8 @@ Route::group(['prefix'=>'admin'],function(){
     });
     Route::group(['prefix'=>'order'],function(){
         Route::get('/','OrderController@getOrder')->name('admin.order');
+        Route::get('/update-quality','OrderController@orderUpdateQuality')->name('admin.order.updateNum');
+        Route::get('/delete-mathang','OrderController@orderdelMH')->name('admin.order.delMH');
         Route::post('/','OrderController@Order')->name('admin.order.datban');
     });
 
