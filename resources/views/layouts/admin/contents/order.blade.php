@@ -46,14 +46,19 @@
                                                 <i class="fa fa-bars"></i> Gọi thêm
                                             </button>
                                             <div id="mySidenav1" class="sidenav">
-                                                <h3 class="headingOrder"></h3> <a href="javascript:void(0)"
-                                                    class="closebtn" onclick="closeNav()">&times;</a>
-                                                <form method="POST" action="{{ route('admin.order.datban') }}">
-                                                    @csrf
+                                                <a href="javascript:void(0)"
+                                                    class="closebtn" onclick="closeNavChild()">&times;</a>
+                                                {{-- <form method="POST" action="{{ route('admin.order.datban') }}"> --}}
+                                                    {{-- @csrf --}}
                                                     <div class="container-fluid">
+                                                        <div style="postion: relavetive">
+                                                            <div id="mySidenavOrder" class="sidenavOrder">
+                                                                <a href="javascript:void(0)" class="closebtn" onclick="closeNavOrder()">&times;</a>
+                                                            </div>
+                                                        </div>
                                                         <input type="hidden" id="ban_id" name="ban" />
                                                         <div class="row">
-                                                            <div class="col-md-9">
+                                                            <div class="col-md-12">
                                                                 <div class="tabs">
                                                                     <ul class="nav nav-tabs">
                                                                         @foreach($getProd as $type)
@@ -80,9 +85,21 @@
                                                                                                 width="100%"
                                                                                                 class="img-order-img" />
                                                                                             <div class="box-order">
+                                                                                                <input type="hidden"
+                                                                                                class="prod_src"
+                                                                                                value="{{asset($prod->chi_tiet_hinh_anh[0]->hinh_anh->ha_url) }}" />
+                                                                                                <input type="hidden"
+                                                                                                    class="prod_id"
+                                                                                                    value="{{$prod->mh_ma }}" />
+                                                                                                <input type="hidden"
+                                                                                                    class="prod_price"
+                                                                                                    value="{{$prod->mh_gia }}" />
+                                                                                                <input type="hidden"
+                                                                                                    class="prod_name"
+                                                                                                    value="{{$prod->mh_ten }}" />
                                                                                                 <button type="button"
-                                                                                                    class="mb-xs mt-xs mr-xs modal-basic btn btn-default btn-order"
-                                                                                                    href="#exampleModalCenter{{$prod->mh_ma}}">Chọn</button>
+                                                                                                    class="btn btn-default btn-order"
+                                                                                                    onclick="openNavOrder()">Đặt thêm</button>
                                                                                             </div>
                                                                                         </div>
                                                                                         <div class="content-box">
@@ -94,50 +111,7 @@
                                                                                         </div>
                                                                                     </div>
                                                                                 </div>
-                                                                                <div id="exampleModalCenter{{$prod->mh_ma}}"
-                                                                                    class="modal-block mfp-hide">
-                                                                                    <section class="panel">
-                                                                                        <div class="panel-body">
-                                                                                            <div class="modal-wrapper">
-                                                                                                <h4 class="mb-3">
-                                                                                                    {{$prod->mh_ten }} -
-                                                                                                    <span
-                                                                                                        class="bagde-custom">{{number_format($prod->mh_gia) }}
-                                                                                                        đ
-                                                                                                    </span>
-                                                                                                </h4>
-                                                                                                <div class="d-flex">
-                                                                                                    <input type="number"
-                                                                                                        placeholder="Nhập số lượng"
-                                                                                                        class="form-control flex-1 order_number" />
-                                                                                                    <input type="hidden"
-                                                                                                        class="prod_src"
-                                                                                                        value="{{asset($prod->chi_tiet_hinh_anh[0]->hinh_anh->ha_url) }}" />
-                                                                                                    <input type="hidden"
-                                                                                                        class="prod_id"
-                                                                                                        value="{{$prod->mh_ma }}" />
-                                                                                                    <input type="hidden"
-                                                                                                        class="prod_price"
-                                                                                                        value="{{$prod->mh_gia }}" />
-                                                                                                    <input type="hidden"
-                                                                                                        class="prod_name"
-                                                                                                        value="{{$prod->mh_ten }}" />
-                                                                                                    <button
-                                                                                                        type="button"
-                                                                                                        class="btn btn-success ml-2 flexAuto ordered modal-confirm">Ok</button>
-                                                                                                </div>
-                                                                                                <br />
-                                                                                                <div
-                                                                                                    class="modal-text text-center">
-                                                                                                    <button
-                                                                                                        type="button"
-                                                                                                        class="btn btn-default modal-dismiss">Hủy
-                                                                                                    </button>
-                                                                                                </div>
-                                                                                            </div>
-                                                                                        </div>
-                                                                                    </section>
-                                                                                </div>
+                                                                    
                                                                                 @endforeach
                                                                             </div>
                                                                         </div>
@@ -145,22 +119,9 @@
                                                                     </div>
                                                                 </div>
                                                             </div>
-                                                            <div class="col-md-3">
-                                                                <h4>Món đã order</h4>
-                                                                <div id="order-list"></div>
-                                                                <div class="">
-                                                                    <input type="hidden" name="arrKey[]" id="arrKey">
-                                                                    <input type="hidden" name="arrNumber[]"
-                                                                        id="arrNumber">
-                                                                    <small>Tiến hành đặt bàn khi mọi thứ đã hoàn
-                                                                        tất...</small>
-                                                                    <button type="submit" class="btn btn-primary w-100"
-                                                                        style="width: 100%">Đặt bàn</button>
-                                                                </div>
-                                                            </div>
                                                         </div>
                                                     </div>
-                                                </form>
+                                                {{-- </form> --}}
                                             </div>
                                             <table class="table">
                                                 @if(count($ban->order)>0)
@@ -174,13 +135,11 @@
                                                         {{$do->mat_hang->mh_ten}}
                                                     </td>
                                                     <td class="updateHere">
-
                                                         <div class="content-default">
                                                             {{$do->dorder_soluong}} /
                                                             {{$do->mat_hang->don_vi->dv_ten}}
                                                         </div>
                                                         <div class="content-update">
-
                                                         </div>
                                                         <input type="hidden" class="order_id"
                                                             value="{{ $ban->order[0]->order_id }}" />
@@ -193,9 +152,10 @@
                                                         {{number_format($do->mat_hang->mh_gia)}} đ
                                                     </td>
                                                     <td>
-                                                        <button class='btn btn-danger delBtn'><i
-                                                                class="fa fa-times"></i></button>
-                                                        <button class='btn btn-primary updateSoLuong'><i
+                                                        <button class='btn btn-outline-danger delBtn'>
+                                                            <i class="fa fa-times"></i>
+                                                        </button>
+                                                        <button class='btn btn-outline-primary updateSoLuong'><i
                                                                 class="fa fa-edit"></i></button>
                                                     </td>
                                                 </tr>
@@ -215,7 +175,6 @@
                                 </footer>
                             </section>
                         </div>
-
                         @else
                         <div class="ban-disactive">
                             <div class="row">
@@ -290,8 +249,8 @@
                                                     <div class="modal-wrapper">
                                                         <h4 class="mb-3">
                                                             {{$prod->mh_ten }} -
-                                                            <span class="bagde-custom">{{number_format($prod->mh_gia) }}
-                                                                đ
+                                                            <span class="bagde-custom">
+                                                                {{number_format($prod->mh_gia) }} đ
                                                             </span>
                                                         </h4>
                                                         <div class="d-flex">
@@ -346,14 +305,29 @@
         $('.headingOrder').html(name);
         $('#ban_id').val(id);
         document.getElementById("mySidenav").style.width = "100%";
-        document.getElementById("mySidenav").style.height = "calc(100vh - 100px)";
+        document.getElementById("mySidenav").style.height = "calc(100vh - 193px)";
     }
 
     function openNavChild(id,name) {
         $('.headingOrder').html(name);
         $('#ban_id').val(id);
         document.getElementById("mySidenav1").style.width = "100%";
-        document.getElementById("mySidenav1").style.height = "calc(100vh - 100px)";
+        document.getElementById("mySidenav1").style.height = "calc(100vh - 193px)";
+    }
+
+    function closeNavChild() {
+        document.getElementById("mySidenav1").style.width = "0";
+        document.getElementById("mySidenav1").style.height = "calc(100vh - 193px)";
+    }
+
+    function openNavOrder(id,name) {
+        document.getElementById("mySidenavOrder").style.width = "100%";
+        document.getElementById("mySidenavOrder").style.height = "calc(100vh - 193px)";
+    }
+
+    function closeNavOrder() {
+        document.getElementById("mySidenavOrder").style.width = "0";
+        document.getElementById("mySidenavOrder").style.height = "calc(100vh - 193px)";
     }
 
     function closeNav() {
