@@ -13,12 +13,6 @@
         <div class="nano-content">
             <nav id="menu" class="nav-main" role="navigation">
                 <ul class="nav nav-main">
-                    <li class="nav-active">
-                        <a href="index.html">
-                            <i class="fa fa-home" aria-hidden="true"></i>
-                            <span>Nhân sự</span>
-                        </a>
-                    </li>
                     <li class="nav-parent">
                         <a>
                             <i class="fa fa-copy" aria-hidden="true"></i>
@@ -26,7 +20,7 @@
                         </a>
                         <ul class="nav nav-children">
                             <li>
-                                <a href="pages-signup.html">
+                            <a href="{{ route('admin.nguoidung') }}">
                                     Quản lý nhân sự
                                 </a>
                             </li>
@@ -35,112 +29,12 @@
                     <li class="nav-parent">
                         <a>
                             <i class="fa fa-tasks" aria-hidden="true"></i>
-                            <span>UI Elements</span>
+                            <span>Khu vực</span>
                         </a>
                         <ul class="nav nav-children">
                             <li>
-                                <a href="ui-elements-typography.html">
-                                    Typography
-                                </a>
-                            </li>
-                            <li>
-                                <a href="ui-elements-icons.html">
-                                    Icons
-                                </a>
-                            </li>
-                            <li>
-                                <a href="ui-elements-tabs.html">
-                                    Tabs
-                                </a>
-                            </li>
-                            <li>
-                                <a href="ui-elements-panels.html">
-                                    Panels
-                                </a>
-                            </li>
-                            <li>
-                                <a href="ui-elements-widgets.html">
-                                    Widgets
-                                </a>
-                            </li>
-                            <li>
-                                <a href="ui-elements-portlets.html">
-                                    Portlets
-                                </a>
-                            </li>
-                            <li>
-                                <a href="ui-elements-buttons.html">
-                                    Buttons
-                                </a>
-                            </li>
-                            <li>
-                                <a href="ui-elements-alerts.html">
-                                    Alerts
-                                </a>
-                            </li>
-                            <li>
-                                <a href="ui-elements-notifications.html">
-                                    Notifications
-                                </a>
-                            </li>
-                            <li>
-                                <a href="ui-elements-modals.html">
-                                    Modals
-                                </a>
-                            </li>
-                            <li>
-                                <a href="ui-elements-lightbox.html">
-                                    Lightbox
-                                </a>
-                            </li>
-                            <li>
-                                <a href="ui-elements-progressbars.html">
-                                    Progress Bars
-                                </a>
-                            </li>
-                            <li>
-                                <a href="ui-elements-sliders.html">
-                                    Sliders
-                                </a>
-                            </li>
-                            <li>
-                                <a href="ui-elements-carousels.html">
-                                    Carousels
-                                </a>
-                            </li>
-                            <li>
-                                <a href="ui-elements-accordions.html">
-                                    Accordions
-                                </a>
-                            </li>
-                            <li>
-                                <a href="ui-elements-nestable.html">
-                                    Nestable
-                                </a>
-                            </li>
-                            <li>
-                                <a href="ui-elements-tree-view.html">
-                                    Tree View
-                                </a>
-                            </li>
-                            <li>
-                                <a href="ui-elements-grid-system.html">
-                                    Grid System
-                                </a>
-                            </li>
-                            <li>
-                                <a href="ui-elements-charts.html">
-                                    Charts
-                                </a>
-                            </li>
-                            <li>
-                                <a href="ui-elements-animations.html">
-                                    Animations
-                                </a>
-                            </li>
-                            <li>
-                                <a href="ui-elements-extra.html">
-                                    Extra
+                                <a href="{{ route('admin.area') }}">
+                                    Quản Lý Khu vực - Bàn
                                 </a>
                             </li>
                         </ul>
@@ -148,37 +42,12 @@
                     <li class="nav-parent">
                         <a>
                             <i class="fa fa-list-alt" aria-hidden="true"></i>
-                            <span>Forms</span>
+                            <span>Mặt Hàng</span>
                         </a>
                         <ul class="nav nav-children">
                             <li>
-                                <a href="forms-basic.html">
-                                    Basic
-                                </a>
-                            </li>
-                            <li>
-                                <a href="forms-advanced.html">
-                                    Advanced
-                                </a>
-                            </li>
-                            <li>
-                                <a href="forms-validation.html">
-                                    Validation
-                                </a>
-                            </li>
-                            <li>
-                                <a href="forms-layouts.html">
-                                    Layouts
-                                </a>
-                            </li>
-                            <li>
-                                <a href="forms-wizard.html">
-                                    Wizard
-                                </a>
-                            </li>
-                            <li>
-                                <a href="forms-code-editor.html">
-                                    Code Editor
+                                <a href="{{ route('admin.prod') }}">
+                                    Quản Lý Mặt Hàng
                                 </a>
                             </li>
                         </ul>
@@ -186,37 +55,12 @@
                     <li class="nav-parent">
                         <a>
                             <i class="fa fa-table" aria-hidden="true"></i>
-                            <span>Tables</span>
+                            <span>Phân Công</span>
                         </a>
                         <ul class="nav nav-children">
                             <li>
-                                <a href="tables-basic.html">
-                                    Basic
-                                </a>
-                            </li>
-                            <li>
-                                <a href="tables-advanced.html">
-                                    Advanced
-                                </a>
-                            </li>
-                            <li>
-                                <a href="tables-responsive.html">
-                                    Responsive
-                                </a>
-                            </li>
-                            <li>
-                                <a href="tables-editable.html">
-                                    Editable
-                                </a>
-                            </li>
-                            <li>
-                                <a href="tables-ajax.html">
-                                    Ajax
-                                </a>
-                            </li>
-                            <li>
-                                <a href="tables-pricing.html">
-                                    Pricing
+                                <a href="{{ route('admin.phancong') }}">
+                                    Phân Công Lao Động
                                 </a>
                             </li>
                         </ul>
@@ -224,22 +68,12 @@
                     <li class="nav-parent">
                         <a>
                             <i class="fa fa-map-marker" aria-hidden="true"></i>
-                            <span>Maps</span>
+                            <span>Quản Lý Order</span>
                         </a>
                         <ul class="nav nav-children">
                             <li>
-                                <a href="maps-google-maps.html">
-                                    Basic
-                                </a>
-                            </li>
-                            <li>
-                                <a href="maps-google-maps-builder.html">
-                                    Map Builder
-                                </a>
-                            </li>
-                            <li>
-                                <a href="maps-vector.html">
-                                    Vector
+                                <a href="{{ route('admin.order') }}">
+                                   Quản Lý Chung
                                 </a>
                             </li>
                         </ul>
@@ -247,27 +81,12 @@
                     <li class="nav-parent">
                         <a>
                             <i class="fa fa-columns" aria-hidden="true"></i>
-                            <span>Layouts</span>
+                            <span>Lương Nhân Viên</span>
                         </a>
                         <ul class="nav nav-children">
                             <li>
-                                <a href="layouts-default.html">
-                                    Default
-                                </a>
-                            </li>
-                            <li>
-                                <a href="layouts-boxed.html">
-                                    Boxed
-                                </a>
-                            </li>
-                            <li>
-                                <a href="layouts-menu-collapsed.html">
-                                    Menu Collapsed
-                                </a>
-                            </li>
-                            <li>
-                                <a href="layouts-scroll.html">
-                                    Scroll
+                                <a href="{{ route('admin.nguoidung.luong') }}">
+                                    Lương Hàng Tháng
                                 </a>
                             </li>
                         </ul>
@@ -275,21 +94,16 @@
                     <li class="nav-parent">
                         <a>
                             <i class="fa fa-align-left" aria-hidden="true"></i>
-                            <span>Menu Levels</span>
+                            <span>Quản Lý Chung</span>
                         </a>
                         <ul class="nav nav-children">
                             <li>
-                                <a>First Level</a>
+                                <a href="{{ route('admin.vaitro') }}">Vai Trò - Lương</a>
                             </li>
-
+                            <li>
+                                <a href="{{ route('admin.nguyenlieu') }}">NCC - Nguyên Liệu - Loại Hàng</a>
+                            </li>
                         </ul>
-                    </li>
-                    <li>
-                        <a href="http://themeforest.net/item/JSOFT-responsive-html5-template/4106987?ref=JSOFT"
-                            target="_blank">
-                            <i class="fa fa-external-link" aria-hidden="true"></i>
-                            <span>Front-End <em class="not-included">(Not Included)</em></span>
-                        </a>
                     </li>
                 </ul>
             </nav>

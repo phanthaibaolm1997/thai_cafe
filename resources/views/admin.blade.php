@@ -41,7 +41,6 @@
 
 	<!-- Vendor -->
 	<script src="{{ ('/assets/vendor/jquery/jquery.js') }}"></script>
-	<script src="https://cdn.jsdelivr.net/npm/select2@4.1.0-beta.1/dist/js/select2.min.js"></script>
 	<script src="{{ ('/assets/vendor/jquery-browser-mobile/jquery.browser.mobile.js') }}"></script>
 	<script src="{{ ('/assets/vendor/bootstrap/js/bootstrap.js') }}"></script>
 	<script src="{{ ('/assets/vendor/nanoscroller/nanoscroller.js') }}"></script>
@@ -78,6 +77,7 @@
 	<script src="{{ ('/assets/javascripts/theme.init.js') }}"></script>
 	<script src="{{ ('/assets/javascripts/ui-elements/examples.lightbox.js') }}"></script>
 	<script src="{{ ('/assets/javascripts/ui-elements/examples.modals.js') }}"></script>
+	{{-- <script src="https://cdn.jsdelivr.net/npm/select2@4.1.0-beta.1/dist/js/select2.min.js"></script> --}}
 	<script src="https://cdnjs.cloudflare.com/ajax/libs/bootbox.js/5.4.0/bootbox.min.js"></script>
 	<script src="https://cdn.ckeditor.com/4.14.0/standard/ckeditor.js"></script>
 	<script src='http://fullcalendar.io/js/fullcalendar-2.1.1/lib/moment.min.js'></script>

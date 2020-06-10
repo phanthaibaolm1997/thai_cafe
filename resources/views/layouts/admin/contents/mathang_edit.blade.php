@@ -82,7 +82,7 @@
                             <div class="row">
                                 <div class="col-md-6">
                                     <h3>Hình ảnh</h3>
-                                    <input type="file" multiple id="gallery-photo-add" required name="imgup[]">
+                                    <input type="file" multiple id="gallery-photo-add" name="imgup[]">
                                     <p><small>Hình ảnh có sẳn..</small></p>
                                     @foreach ($detailProd->chi_tiet_hinh_anh as $ha)
                                     <div class="img-loader">
@@ -101,10 +101,13 @@
                                     <select class="nguyenlieu-multiple form-control" name="nguyenlieu[]"
                                         multiple="multiple" style="width: 100%;">
                                         @foreach ($allNL as $nl)
+                                        <?php $k = false; ?>
                                         @foreach ($detailProd->mathang_nguyenlieu as $mhnl)
-                                        <option value="{{ $nl->nl_id }}" @if($nl->nl_id == $mhnl->nl_id)
-                                            selected @endif>{{ $nl->nl_ten }}</option>
+                                            @if($nl->nl_id == $mhnl->nl_id)
+                                                <?php $k = true; break; ?>
+                                            @endif
                                         @endforeach
+                                        <option value="{{ $nl->nl_id }}" @if($k) selected @endif>{{ $nl->nl_ten }}</option>
                                         @endforeach
                                     </select>
                                 </div>
@@ -124,6 +127,8 @@
     </div>
 </section>
 <script src="{{ ('/assets/vendor/jquery/jquery.js') }}"></script>
+<script src="https://cdn.jsdelivr.net/npm/select2@4.1.0-beta.1/dist/js/select2.min.js" defer></script>
+
 <script>
     $(document).ready(function() {
         $('.nguyenlieu-multiple').select2();

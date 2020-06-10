@@ -24,4 +24,17 @@ class loai extends Model
         return loai::with('mat_hang')->get();
     }
 
+
+    public function updateLoai($id,$name){
+        loai::where('loai_id',$id)
+            ->update([
+                'loai_ten' => $name,
+            ]);
+    }
+    public function createLoai($name){
+        $create = new loai();
+        $create->loai_ten = $name;
+        $create->save();
+    }
+
 }

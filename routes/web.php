@@ -15,10 +15,11 @@ use Illuminate\Support\Facades\Route;
 
 Route::get('/', function () {
     return view('admin');
-});
+})->name('admin');
 
 Route::get('login','LoginController@getLogin')->name('login');
 Route::post('login','LoginController@Authentication')->name('authentication');
+Route::get('logout','LoginController@logout')->name('logout');
 
 Route::group(['prefix'=>'admin'],function(){
     Route::group(['prefix'=>'nguoi-dung'],function(){
@@ -62,6 +63,22 @@ Route::group(['prefix'=>'admin'],function(){
         Route::post('/','OrderController@Order')->name('admin.order.datban');
         Route::get('/addNew','OrderController@addOrder')->name('admin.order.addNew');
         Route::post('/checkout','OrderController@checkOut')->name('admin.order.checkout');
+    });
+    Route::group(['prefix'=>'vai-tro'],function(){
+        Route::get('/','UserController@getVaiTro')->name('admin.vaitro');
+        Route::post('/edit/{id}','UserController@editVaiTro')->name('admin.vaitro.edit');
+        Route::post('/add','UserController@createVT')->name('admin.vaitro.add');
+        Route::post('/luong/edit/{id}','UserController@editLuong')->name('admin.luong.edit');
+        Route::post('/luong/add','UserController@createLuong')->name('admin.luong.add');
+    });
+    Route::group(['prefix'=>'nguyen-lieu'],function(){
+        Route::get('/','CustomController@indexNL')->name('admin.nguyenlieu');
+        Route::post('/edit/{id}','CustomController@editNL')->name('admin.nguyenlieu.edit');
+        Route::post('/add','CustomController@createNL')->name('admin.nguyenlieu.add');
+        Route::post('/ncc/edit/{id}','CustomController@editNCC')->name('admin.ncc.edit');
+        Route::post('/ncc/add','CustomController@createNCC')->name('admin.ncc.add');
+        Route::post('/loai/edit/{id}','CustomController@editLoai')->name('admin.loai.edit');
+        Route::post('/loai/add','CustomController@createLoai')->name('admin.loai.add');
     });
 
 });

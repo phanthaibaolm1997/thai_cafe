@@ -11,15 +11,6 @@
     </div>
 </header>
 <br />
-{{-- <section class="panel p-relative">
-    <div class="panel-body" style="min-height: 600px">
-        <div class="container-fluid">
-            <span class="card-title">Hình ảnh</span>
-            
-        </div>
-    </div>
-</section> --}}
-
 <section class="panel form-wizard" id="w4">
     <div class="panel-body">
         <div class="panel-body panel-body-nopadding">
@@ -121,6 +112,7 @@
     </div>
 </section>
 <script src="{{ ('/assets/vendor/jquery/jquery.js') }}"></script>
+<script src="https://cdn.jsdelivr.net/npm/select2@4.1.0-beta.1/dist/js/select2.min.js" defer></script>
 <script>
     $(document).ready(function() {
         $('.nguyenlieu-multiple').select2();

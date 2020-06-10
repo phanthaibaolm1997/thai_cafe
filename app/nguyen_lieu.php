@@ -19,4 +19,16 @@ class nguyen_lieu extends Model
     public function getAllNL(){
         return nguyen_lieu::all();
     }
+
+    public function updateNL($id,$name){
+        nguyen_lieu::where('nl_id',$id)
+            ->update([
+                'nl_ten' => $name,
+            ]);
+    }
+    public function createNL($name){
+        $create = new nguyen_lieu();
+        $create->nl_ten = $name;
+        $create->save();
+    }
 }
