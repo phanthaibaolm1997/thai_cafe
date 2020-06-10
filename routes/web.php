@@ -23,6 +23,7 @@ Route::post('login','LoginController@Authentication')->name('authentication');
 Route::group(['prefix'=>'admin'],function(){
     Route::group(['prefix'=>'nguoi-dung'],function(){
         Route::get('/','UserController@getUser')->name('admin.nguoidung');
+        Route::get('/luong','UserController@userSalary')->name('admin.nguoidung.luong');
         Route::post('/add','UserController@addUser')->name('admin.nguoidung.add');
     });
     Route::group(['prefix'=>'khu-vuc'],function(){
@@ -59,6 +60,8 @@ Route::group(['prefix'=>'admin'],function(){
         Route::get('/update-quality','OrderController@orderUpdateQuality')->name('admin.order.updateNum');
         Route::get('/delete-mathang','OrderController@orderdelMH')->name('admin.order.delMH');
         Route::post('/','OrderController@Order')->name('admin.order.datban');
+        Route::get('/addNew','OrderController@addOrder')->name('admin.order.addNew');
+        Route::post('/checkout','OrderController@checkOut')->name('admin.order.checkout');
     });
 
 });

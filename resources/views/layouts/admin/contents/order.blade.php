@@ -3,6 +3,7 @@
 <header class="page-header">
     <h2>Quản lý gọi món</h2>
 </header>
+<br />
 <section class="panel p-relative">
     <div class="tabs">
         <ul class="nav nav-tabs nav-justified">
@@ -15,7 +16,7 @@
             </li>
             @endforeach
         </ul>
-        <div class="tab-content">
+        <div class="tab-content" style="height: calc(100vh - 264px)">
             @foreach($getArea as $area1)
             <div id="area{{$area1->khu_id}}" class="tab-pane @if($loop->iteration == 1) active @endif">
                 <div class="row">
@@ -30,10 +31,90 @@
                                     <p class="text-center">
                                         <button class="mb-xs btn-sm mt-xs mr-xs modal-sizes btn btn-default"
                                             href="#orderFull{{$ban->ban_id}}">Order</button>
-                                        <button class="btn btn-sm btn-warning">Thanh toán</button>
+                                        <button class="mb-xs btn-sm mt-xs mr-xs modal-sizes btn btn-warning"
+                                            href="#checkOutFull{{$ban->ban_id}}">Thanh toán</button>
                                     </p>
                                 </div>
                             </div>
+                        </div>
+                        <div id="checkOutFull{{$ban->ban_id}}" class="modal-block mfp-hide" style="max-width: 500px">
+                            <section class="panel">
+                                <div class="panel-body" style="height: calc(100vh - 200px);">
+                                    <form method="POST" action="{{ route('admin.order.checkout')}}">
+                                        <div style="height: calc(100vh - 310px);">
+                                            <h1 class="text-center"><i class="fa fa-bitcoin"></i> COFFEE THAI</h1>
+                                            <p class="text-center">Địa chỉ: 272 Đường 30 Tháng 4, Hưng Lợi, Ninh Kiều,
+                                                Cần
+                                                Thơ, Việt Nam </p>
+                                            <p class="text-right">{{  now()->toDateTimeString() }}</p>
+                                            <h4 class="text-center">HÓA ĐƠN THANH TOÁN</h4>
+                                            <div class="row">
+                                                <div class="col-md-12">
+                                                    <p><strong>KHU : {{$area->khu_ten}}</strong></p>
+                                                    <p><strong>BÀN : {{$ban->ban_ten}}</strong></p>
+                                                </div>
+                                            </div>
+
+                                            <table class="table table-thanhtoan table-borderless">
+                                                <thead>
+                                                    <tr>
+                                                        <th>Mã SP</th>
+                                                        <th>Tên SP</th>
+                                                        <th>Số lượng</th>
+                                                        <th>Đơn giá</th>
+                                                        <th>Thành tiền</th>
+                                                    </tr>
+                                                </thead>
+                                                <?php $total = 0; ?>
+                                                @if(count($ban->order)>0)
+                                                <tbody>
+                                                    @foreach ($ban->order[0]->detail_order as $do)
+                                                    <tr class="trRM">
+                                                        <td>
+                                                            #{{$do->mat_hang->mh_ma}}
+                                                        </td>
+                                                        <td>
+                                                            {{$do->mat_hang->mh_ten}}
+                                                        </td>
+                                                        <td>
+                                                            {{$do->dorder_soluong}} /
+                                                            {{$do->mat_hang->don_vi->dv_ten}}
+                                                        </td>
+                                                        <td>
+                                                            {{number_format($do->mat_hang->mh_gia)}} đ
+                                                        </td>
+                                                        <td>
+                                                            <?php $total += $do->mat_hang->mh_gia * $do->dorder_soluong; ?>
+                                                            {{number_format($do->mat_hang->mh_gia*$do->dorder_soluong)}}
+                                                            đ
+                                                        </td>
+                                                    </tr>
+                                                    @endforeach
+                                                </tbody>
+                                                @endif
+                                            </table>
+                                            <hr />
+                                            <p class="text-right">
+                                                <strong>TỔNG :{{number_format($total) }} đ </strong>
+                                            </p>
+                                            <input type="hidden" name="ban_id" value="{{$ban->ban_id}}" />
+                                            <input type="hidden" name="order_id" value="{{$ban->order[0]->order_id}}" />
+                                            <input type="hidden" name="tongtien" value="{{$total}}" />
+                                            @csrf
+                                        </div>
+                                        <div class="modal-wrapper">
+                                            <div class="modal-text text-right">
+                                                <button type="submit" class="btn btn-warning">
+                                                    <i class="fa fa-credit-card"></i> Thanh toán
+                                                </button>
+                                                <button type="button" class="btn btn-default modal-dismiss">
+                                                    <i class="fa fa-times"></i> Hủy
+                                                </button>
+                                            </div>
+                                        </div>
+                                    </form>
+                                </div>
+                            </section>
                         </div>
                         <div id="orderFull{{$ban->ban_id}}" class="modal-block modal-block-lg mfp-hide">
                             <section class="panel">
@@ -41,89 +122,109 @@
                                     <div class="modal-wrapper" style="min-height: 80vh">
                                         <h2 class="text-center">DANH SÁCH ORDER</h2>
                                         <div class="modal-text">
-                                            <button class="btn btn-sm btn-info"
+                                            <button class="btn btn-sm btn-primary" style="margin-bottom: 10px"
                                                 onclick="openNavChild(`{{$ban->ban_id}}`,`{{$ban->ban_ten}}`)">
                                                 <i class="fa fa-bars"></i> Gọi thêm
                                             </button>
                                             <div id="mySidenav1" class="sidenav">
-                                                <a href="javascript:void(0)"
-                                                    class="closebtn" onclick="closeNavChild()">&times;</a>
-                                                {{-- <form method="POST" action="{{ route('admin.order.datban') }}"> --}}
-                                                    {{-- @csrf --}}
-                                                    <div class="container-fluid">
-                                                        <div style="postion: relavetive">
-                                                            <div id="mySidenavOrder" class="sidenavOrder">
-                                                                <a href="javascript:void(0)" class="closebtn" onclick="closeNavOrder()">&times;</a>
-                                                            </div>
-                                                        </div>
-                                                        <input type="hidden" id="ban_id" name="ban" />
-                                                        <div class="row">
-                                                            <div class="col-md-12">
-                                                                <div class="tabs">
-                                                                    <ul class="nav nav-tabs">
-                                                                        @foreach($getProd as $type)
-                                                                        <li
-                                                                            class="@if($loop->iteration == 1) active @endif">
-                                                                            <a href="#type{{ $type->loai_id }}"
-                                                                                data-toggle="tab">
-                                                                                <i class="fa fa-star"></i>
-                                                                                {{ $type->loai_ten }}
-                                                                            </a>
-                                                                        </li>
-                                                                        @endforeach
-                                                                    </ul>
-                                                                    <div class="tab-content">
-                                                                        @foreach($getProd as $type)
-                                                                        <div id="type{{ $type->loai_id }}"
-                                                                            class="tab-pane @if($loop->iteration == 1) active @endif">
-                                                                            <div class="row">
-                                                                                @foreach ($type->mat_hang as $prod)
-                                                                                <div class="col-md-3">
-                                                                                    <div class="prod-order">
-                                                                                        <div class="img-box">
-                                                                                            <img src="{{ asset($prod->chi_tiet_hinh_anh[0]->hinh_anh->ha_url)}}"
-                                                                                                width="100%"
-                                                                                                class="img-order-img" />
-                                                                                            <div class="box-order">
-                                                                                                <input type="hidden"
-                                                                                                class="prod_src"
-                                                                                                value="{{asset($prod->chi_tiet_hinh_anh[0]->hinh_anh->ha_url) }}" />
-                                                                                                <input type="hidden"
-                                                                                                    class="prod_id"
-                                                                                                    value="{{$prod->mh_ma }}" />
-                                                                                                <input type="hidden"
-                                                                                                    class="prod_price"
-                                                                                                    value="{{$prod->mh_gia }}" />
-                                                                                                <input type="hidden"
-                                                                                                    class="prod_name"
-                                                                                                    value="{{$prod->mh_ten }}" />
-                                                                                                <button type="button"
-                                                                                                    class="btn btn-default btn-order"
-                                                                                                    onclick="openNavOrder()">Đặt thêm</button>
-                                                                                            </div>
-                                                                                        </div>
-                                                                                        <div class="content-box">
-                                                                                            <h5>{{$prod->mh_ten }}</h5>
-                                                                                            <h5 class="text-right"><span
-                                                                                                    class="bagde-custom">{{number_format($prod->mh_gia) }}
-                                                                                                    đ</span>
-                                                                                            </h5>
-                                                                                        </div>
-                                                                                    </div>
-                                                                                </div>
-                                                                    
-                                                                                @endforeach
-                                                                            </div>
-                                                                        </div>
-                                                                        @endforeach
+                                                <a href="javascript:void(0)" class="closebtn"
+                                                    onclick="closeNavChild()">&times;</a>
+                                                <div class="container-fluid">
+                                                    <div style="postion: relavetive">
+                                                        <div id="mySidenavOrder" class="sidenavOrder">
+                                                            <a href="javascript:void(0)" class="closebtn"
+                                                                onclick="closeNavOrder()">&times;</a>
+                                                            <div class="orderthem">
+                                                                <h2 style="color: #fff">THÊM MÓN VÀO BÀN</h2>
+                                                                <br />
+                                                                <div class="d-flex">
+                                                                    <div class="flex-1">
+                                                                        <input type="number" class="form-control"
+                                                                            placeholder="Nhập số lương..."
+                                                                            id="add_mh_soluong" />
+                                                                        <input type="hidden" id="add_mh_ma" />
+                                                                        <input type="hidden" id="add_mh_gia" />
+                                                                        <input type="hidden" id="add_order_id" />
+                                                                    </div>
+                                                                    <div class="flexAuto">
+                                                                        <button class="btn btn-primary ml-2 addNew">
+                                                                            Thêm
+                                                                        </button>
                                                                     </div>
                                                                 </div>
                                                             </div>
                                                         </div>
                                                     </div>
-                                                {{-- </form> --}}
+                                                    <input type="hidden" id="ban_id" name="ban" />
+                                                    <div class="row">
+                                                        <div class="col-md-12">
+                                                            <div class="tabs">
+                                                                <ul class="nav nav-tabs">
+                                                                    @foreach($getProd as $type)
+                                                                    <li
+                                                                        class="@if($loop->iteration == 1) active @endif">
+                                                                        <a href="#type{{ $type->loai_id }}"
+                                                                            data-toggle="tab">
+                                                                            <i class="fa fa-star"></i>
+                                                                            {{ $type->loai_ten }}
+                                                                        </a>
+                                                                    </li>
+                                                                    @endforeach
+                                                                </ul>
+                                                                <div class="tab-content">
+                                                                    @foreach($getProd as $type)
+                                                                    <div id="type{{ $type->loai_id }}"
+                                                                        class="tab-pane @if($loop->iteration == 1) active @endif">
+                                                                        <div class="row">
+                                                                            @foreach ($type->mat_hang as $prod)
+                                                                            <div class="col-md-3">
+                                                                                <div class="prod-order">
+                                                                                    <div class="img-box">
+                                                                                        <img src="{{ asset($prod->chi_tiet_hinh_anh[0]->hinh_anh->ha_url)}}"
+                                                                                            width="100%"
+                                                                                            class="img-order-img" />
+                                                                                        <div class="box-order">
+                                                                                            <input type="hidden"
+                                                                                                class="prod_src"
+                                                                                                value="{{asset($prod->chi_tiet_hinh_anh[0]->hinh_anh->ha_url) }}" />
+                                                                                            <input type="hidden"
+                                                                                                class="prod_id"
+                                                                                                value="{{$prod->mh_ma }}" />
+                                                                                            <input type="hidden"
+                                                                                                class="prod_price"
+                                                                                                value="{{$prod->mh_gia }}" />
+                                                                                            <input type="hidden"
+                                                                                                class="prod_name"
+                                                                                                value="{{$prod->mh_ten }}" />
+                                                                                            <button type="button"
+                                                                                                class="btn btn-default btn-order"
+                                                                                                onclick="openNavOrder(`{{$prod->mh_ma }}`,`{{$prod->mh_gia }}`,`{{ $ban->order[0]->order_id }}`)">Đặt
+                                                                                                thêm</button>
+                                                                                        </div>
+                                                                                    </div>
+                                                                                    <div class="content-box">
+                                                                                        <h5>{{$prod->mh_ten }}</h5>
+                                                                                        <h5 class="text-right">
+                                                                                            <span class="bagde-custom">
+                                                                                                {{number_format($prod->mh_gia) }}
+                                                                                                đ
+                                                                                            </span>
+                                                                                        </h5>
+                                                                                    </div>
+                                                                                </div>
+                                                                            </div>
+
+                                                                            @endforeach
+                                                                        </div>
+                                                                    </div>
+                                                                    @endforeach
+                                                                </div>
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                </div>
                                             </div>
-                                            <table class="table">
+                                            <table class="table table-config">
                                                 @if(count($ban->order)>0)
                                                 @foreach ($ban->order[0]->detail_order as $do)
                                                 <tr class="trRM">
@@ -168,8 +269,9 @@
                                 <footer class="panel-footer">
                                     <div class="row">
                                         <div class="col-md-12 text-right">
-                                            <button class="btn btn-primary modal-confirm">Confirm</button>
-                                            <button class="btn btn-default modal-dismiss">Cancel</button>
+                                            <a href="{{ url()->current() }}"><button class="btn btn-default">
+                                                    Đóng lại
+                                                </button></a>
                                         </div>
                                     </div>
                                 </footer>
@@ -298,6 +400,24 @@
         </form>
     </div>
 </section>
+<section class="panel" style="margin-bottom: 0px">
+    <div class="panel-body">
+        <div class="row">
+            <div class="col-md-4">
+                <span style="background-color: #e47070; width: 20px; height: 20px; display: inline-block;"></span>
+                <strong style="vertical-align: super;">: Đang có khách</strong>
+            </div>
+            <div class="col-md-4">
+                <span style="background-color: #4dc03a; width: 20px; height: 20px;display: inline-block;"></span>
+                <strong style="vertical-align: super;">: Bàn Trống</strong>
+            </div>
+            <div class="col-md-4">
+                <span style="background-color: #f1ce13; width: 20px; height: 20px;display: inline-block;"></span> :
+                <strong style="vertical-align: super;">: Khách đặt trước</strong>
+            </div>
+        </div>
+    </div>
+</section>
 @endsection
 <script src="{{ ('/assets/vendor/jquery/jquery.js') }}"></script>
 <script type="text/javascript">
@@ -305,7 +425,7 @@
         $('.headingOrder').html(name);
         $('#ban_id').val(id);
         document.getElementById("mySidenav").style.width = "100%";
-        document.getElementById("mySidenav").style.height = "calc(100vh - 193px)";
+        document.getElementById("mySidenav").style.height = "calc(100vh - 90px)";
     }
 
     function openNavChild(id,name) {
@@ -320,7 +440,10 @@
         document.getElementById("mySidenav1").style.height = "calc(100vh - 193px)";
     }
 
-    function openNavOrder(id,name) {
+    function openNavOrder(mh_ma,mh_gia,order_id) {
+        $('#add_mh_ma').val(mh_ma);
+        $('#add_mh_gia').val(mh_gia);
+        $('#add_order_id').val(order_id);
         document.getElementById("mySidenavOrder").style.width = "100%";
         document.getElementById("mySidenavOrder").style.height = "calc(100vh - 193px)";
     }
@@ -332,7 +455,7 @@
 
     function closeNav() {
         document.getElementById("mySidenav").style.width = "0";
-        document.getElementById("mySidenav").style.height = "calc(100vh - 100px)";
+        document.getElementById("mySidenav").style.height = "calc(100vh - 90px)";
     }
 </script>
 <script>
@@ -404,6 +527,28 @@
                     divDefault.html(res);
                     divUpdate.html(res);
                    alert("Update Thành công");
+                }
+            });
+        });
+
+        $('.addNew').click(function(e){
+            var order_id = $('#add_order_id').val();
+            var mh_ma = $('#add_mh_ma').val();
+            var mh_soluong = $('#add_mh_soluong').val();
+            var mh_gia = $('#add_mh_gia').val();
+
+            $.ajax({
+                type: "GET",
+                url: `{{ route('admin.order.addNew') }}`,
+                data: {
+                    mh_gia: mh_gia,
+                    mh_soluong: mh_soluong,
+                    order_id: order_id,
+                    mh_ma: mh_ma
+                },
+                success: function (response) {
+                    closeNavOrder();
+                    alert("Thêm Thành Công");
                 }
             });
         });

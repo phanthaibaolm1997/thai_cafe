@@ -8,6 +8,8 @@ use App\loai;
 use App\ban;
 use App\detail_order;
 use App\order;
+use App\hoa_don;
+use App\chi_tiet_hoa_don;
 
 class OrderController extends Controller
 {
@@ -16,7 +18,6 @@ class OrderController extends Controller
         $loai = new loai();
         $data['getArea'] = $khu->getAreas();
         $data['getProd'] = $loai->getAllProd();
-        // dd($data);
         
         return view('layouts.admin.contents.order',$data);
     }
@@ -61,5 +62,37 @@ class OrderController extends Controller
         $mh_ma = $request->mh_ma;
 
         $do->orderdelMH($order_id,$mh_ma);
+    }
+
+    public function addOrder(Request $request){
+        $do = new detail_order();
+
+        $mh_soluong = $request->mh_soluong;
+        $order_id = $request->order_id;
+        $mh_ma = $request->mh_ma;
+
+        $do->orderMH($order_id,$mh_ma,$mh_soluong);
+    }
+
+    public function checkOut(Request $request){
+        $order_id = $request->order_id;
+        $ban_id = $request->ban_id;
+        $tongtien = $request->tongtien;
+        $do = new detail_order();
+        $ban = new ban();
+        $hoa_don = new hoa_don();
+        $cthd = new chi_tiet_hoa_don();
+
+        $allOrder = $do->getOrderbyOrderID($order_id);
+        $hd_stt = $hoa_don->createHoaDon($ban_id,$tongtien);
+		foreach($allOrder as $arr){
+			$cthd->createCTHD($hd_stt, $arr->mh_ma, $arr->dorder_soluong);
+        }
+
+        $ban->deActiveBan($ban_id);
+        $do->orderdelByOrderID($order_id);
+
+        return redirect()->back()->with('success', "Thanh toán thành công!!");
+
     }
 }

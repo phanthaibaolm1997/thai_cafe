@@ -15,6 +15,13 @@ class detail_order extends Model
         return $this->belongsTo('App\mat_hang', 'mh_ma');
     }
 
+    public function findExitstMH($order_id,$mh_ma){
+        return detail_order::where([
+            'order_id'=>$order_id,
+            'mh_ma'=>$mh_ma,
+            ])->first();
+    }
+
     public function createDO($order_id, $mh_ma, $soluong){
         $create = new detail_order();
         $create->mh_ma = $mh_ma;
@@ -40,4 +47,23 @@ class detail_order extends Model
             ])
         ->delete();
     }
+
+    public function orderMH($order_id,$mh_ma,$mh_soluong){
+        if($this->findExitstMH($order_id,$mh_ma) !== null){
+            $this->orderUpdateQuality($order_id,$mh_ma,$mh_soluong);
+        }else{
+            $this->createDO($order_id,$mh_ma,$mh_soluong);
+        }
+    }
+
+    public function getOrderbyOrderID($order_id){
+        $data = detail_order::where(['order_id'=>$order_id])
+        ->get();
+        return $data;
+    }
+    public function orderdelByOrderID($order_id){
+        detail_order::where(['order_id'=>$order_id])
+        ->delete();
+    }
+
 }

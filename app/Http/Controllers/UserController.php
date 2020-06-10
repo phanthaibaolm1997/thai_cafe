@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
+use Carbon\Carbon;
 use App\nguoi_dung;
 use App\vai_tro;
 
@@ -28,6 +29,13 @@ class UserController extends Controller
         $address = $request->address;
         $user->createUser($email,$password,$name,$birthday,$phone,$type,$address);
         return back();
+    }
+
+    public function userSalary(Request $request){
+        $user = new nguoi_dung();
+        $data['allUser'] = $user->userSalary();
+        $data['thisMonth'] = Carbon::now()->subMonth()->month +1;
+        return view('layouts.admin.contents.luong',$data);
     }
     
 }
